@@ -1,0 +1,14 @@
+className, methodName, marks
+class tests.stage1.CardTest,testCardConstructor,10.0
+class tests.stage1.CardTest,testCardConstructor,10.0
+class tests.stage1.CardTest,testCardToString,10.0
+class tests.stage1.CardTest,testCardValue,10.0
+class tests.stage1.SuitTest,testSuitCompareTo,10.0
+class tests.stage1.SuitTest,testSuitCompareTo,10.0
+class tests.stage1.RankTest,testRankToString,10.0
+class tests.stage1.RankTest,testRankCompareTo,10.0
+class tests.stage1.CardTest,testCardCompareTo,10.0
+class tests.stage1.CardTest,testCardEquals,10.0
+class tests.stage1.SuitTest,testSuitToString,10.0
+class tests.stage1.SuitTest,testSuitConstructor,10.0
+class tests.stage1.RankTest,testRankConstructor,10.0
