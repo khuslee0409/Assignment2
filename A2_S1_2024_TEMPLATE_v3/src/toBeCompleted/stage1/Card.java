@@ -6,23 +6,23 @@ public class Card {
 
     /**
      * Constructor for Card
-     * @param rank
-     * @param suit
+     * @param ranks
+     * @param suits
      */
-    public Card(Rank rank, Suit suit) {
-        this.rank = rank;
-        this.suit = suit;
+    public Card(Rank ranks, Suit suits) {
+        this.rank = ranks;
+        this.suit = suits;
     }
 
     /**
      * Returns the string representation of the card as a combination of rank and suit.
      * See test cases for examples.
+     * 
      */
     public String toString() {
-        if(rank.value < 10){
-            return this.rank.value + this.suit.name.substring(0, 1);
-        }
-        return this.rank.name.substring(0, 1) + this.suit.name.substring(0,1) ;
+        String r = Character.toString(this.rank.symbol);
+        String s = Character.toString(this.suit.symbol);
+        return r + s;
     }
 
     /**
