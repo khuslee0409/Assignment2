@@ -18,16 +18,16 @@ public class Hand {
      * @param deck
      */
     public Hand(String player, int n, Deck deck) {
-        this.player = (player != null) ? player : "TBD";
-        this.cardsInHand = new ArrayList<>();
+        this.player = (player != null) ? player : "TBD"; //player not null= true but in condition that it has to be TBD
+        this.cardsInHand = new ArrayList<>(); //New arraylist data
         
         for (int i = 0; i < n; i++) {
-            Card card = deck.drawCard();
+            Card card = deck.drawCard(); //card reference to function
             if (card != null) {
-                cardsInHand.add(card);
+                cardsInHand.add(card);//array value added
             } else {
                 System.out.println("No more cards!");
-                break;
+                break; //when there is no card
             }
         }
     }
@@ -39,7 +39,7 @@ public class Hand {
      * @param cards ArrayList of cards to be copied into the instance variable
      */
     public Hand(String player, ArrayList<Card> cards) {
-        this.player = (player != null) ? player : "TBD";
+        this.player = (player != null) ? player : "TBD";// same condition as Hand1
         this.cardsInHand = new ArrayList<>(cards);
     }
 
@@ -48,7 +48,7 @@ public class Hand {
      * @param card
      * @return false if card is null, true otherwise
      */
-    public boolean addCard(Card card) {
+    public boolean addCard(Card card) { //same if as Hand1
         if (card != null) {
             cardsInHand.add(card);
             return true;
@@ -67,16 +67,27 @@ public class Hand {
      * In short, do not use the contains method
      */
     public boolean hasCard(Card key) {
-        return false; //TODO
+        for (Card card : cardsInHand) {//if same
+            if (card.equals(key)) {//if card =key card
+                return true;
+            }
+        }
+        return false;
     }
+    
 
     /**
      * Remove a card from the hand
      * @return the card removed, null if the hand is empty
      */
     public Card removeRandomCard() {
-        return null; //TODO
+        if (cardsInHand.isEmpty()) {//condition of empty
+            return null;
+        }
+        int randomIndex = (int) (Math.random() * cardsInHand.size());//using math function to create index
+        return cardsInHand.remove(randomIndex);//remove the index number
     }
+    
 
     /**
      * Steal a card from another hand. Card should be removed from the other hand
@@ -84,8 +95,15 @@ public class Hand {
      * @return the card stolen, null if the other hand is empty
      */
     public Card stealCardFrom(Hand other) {
-        return null; //TODO
-    }
+        if (other.cardsInHand.isEmpty()) {
+            return null;
+        }
+        int randomIndex = (int) (Math.random() * other.cardsInHand.size());
+        Card stolenCard = other.cardsInHand.remove(randomIndex);
+        cardsInHand.add(stolenCard);
+        return stolenCard;
+    }///
+    
 
     /**
      * Remove a card from the hand with a specific suit, if any
@@ -93,8 +111,10 @@ public class Hand {
      * @return the card removed, null if the hand is empty or no card with the suit is found
      */
     public Card removeCardBySuit(String suitName) {
-        return null; //TODO
+        return 0;
+    //todo
     }
+    
 
     /**
      * 
