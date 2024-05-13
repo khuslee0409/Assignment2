@@ -18,8 +18,20 @@ public class Hand {
      * @param deck
      */
     public Hand(String player, int n, Deck deck) {
-        //TODO
+        this.player = (player != null) ? player : "TBD";
+        this.cardsInHand = new ArrayList<>();
+        
+        for (int i = 0; i < n; i++) {
+            Card card = deck.drawCard();
+            if (card != null) {
+                cardsInHand.add(card);
+            } else {
+                System.out.println("No more cards!");
+                break;
+            }
+        }
     }
+    
 
     /**
      * Constructor 2 for Hand
@@ -27,7 +39,8 @@ public class Hand {
      * @param cards ArrayList of cards to be copied into the instance variable
      */
     public Hand(String player, ArrayList<Card> cards) {
-        //TODO
+        this.player = (player != null) ? player : "TBD";
+        this.cardsInHand = new ArrayList<>(cards);
     }
 
     /**
@@ -36,7 +49,13 @@ public class Hand {
      * @return false if card is null, true otherwise
      */
     public boolean addCard(Card card) {
-        return false; //TODO
+        if (card != null) {
+            cardsInHand.add(card);
+            return true;
+        } else {
+            System.out.println("No more cards!");
+            return false;
+        }
     }
 
     /**
@@ -150,8 +169,9 @@ public class Hand {
         return false; //TODO
     }
 
-    /**
-     * Swap a card from this hand with a random card from another hand
+     /**
+     * Swap a card from this hand with a random card from another hand, if both parties agree
+     * (determined using agreeToSwap method)
      * @param idx index of the card in this hand to be swapped
      * @param other the other hand
      * @return true if the swap is successful, false otherwise
