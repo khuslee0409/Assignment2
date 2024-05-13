@@ -106,7 +106,7 @@ public class CardTest {
     public void testCardToString() {
 		assertEquals("AH", card1.toString());
 		assertEquals("JD", card2.toString());
-		assertEquals("TC", card3.toString());
+		assertEquals("XC", card3.toString());
 		assertEquals("5S", card4.toString());
 
 	    currentMethodName = new Object(){}.getClass().getEnclosingMethod().getName();
