@@ -1,6 +1,7 @@
 package toBeCompleted.stage3;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import toBeCompleted.stage1.*;
 import toBeCompleted.stage2.*;
@@ -95,14 +96,15 @@ public class Hand {
      * @return the card stolen, null if the other hand is empty
      */
     public Card stealCardFrom(Hand other) {
-        if (other.cardsInHand.isEmpty()) {
+        if (other == null || other.cardsInHand.isEmpty()) {//in condition of null return null
             return null;
         }
-        int randomIndex = (int) (Math.random() * other.cardsInHand.size());
-        Card stolenCard = other.cardsInHand.remove(randomIndex);
-        cardsInHand.add(stolenCard);
+        int randomIndex = (int) (Math.random() * other.cardsInHand.size());//index function same as removeRandomCard function math
+        Card stolenCard = other.cardsInHand.remove(randomIndex);//remove index card from other
+        cardsInHand.add(stolenCard);//add to first hand
         return stolenCard;
-    }///
+    }
+    
     
 
     /**
@@ -111,8 +113,13 @@ public class Hand {
      * @return the card removed, null if the hand is empty or no card with the suit is found
      */
     public Card removeCardBySuit(String suitName) {
-        return 0;
-    //todo
+        for (int i = 0; i < cardsInHand.size(); i++) {
+            Card card = cardsInHand.get(i);
+            if (card.suit.name.equals(suitName)) {//link to suit
+                return cardsInHand.remove(i); // Remove and return the card
+            }
+        }
+        return null; // No card with the specified suit found
     }
     
 
@@ -124,7 +131,21 @@ public class Hand {
      * See test cases for examples.
      */
     public int sameSuitCards() {
-        return 0; //TODO
+        int maxCount = 0;
+        for (int i = 0; i < cardsInHand.size(); i++) {
+            Card card = cardsInHand.get(i);//card in hand
+            int count = 1; // Count for the current card
+            for (int j = i + 1; j < cardsInHand.size(); j++) {
+                Card card1=cardsInHand.get(j);//other card in hand
+                if (card.suit.name.equals(card1.suit.name)) {//suit check if same
+                    count++;
+                }
+            }
+            if (count > maxCount) {
+                maxCount = count;
+            }
+        }
+        return maxCount;
     }
 
     /**
@@ -134,7 +155,18 @@ public class Hand {
      * See test cases for examples.
      */
     public boolean allSameSuit() {
-        return false; //TODO
+        if (cardsInHand.size() < 3) {
+            return false;
+        }
+        Card card1 =cardsInHand.get(0);//reference first card
+        String suit = card1.suit.name; // Get the suit of the first card
+        for (int i = 1; i < cardsInHand.size(); i++) {
+            Card card = cardsInHand.get(i);//reference as card
+            if (card.suit.name!=suit) {//not same
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
