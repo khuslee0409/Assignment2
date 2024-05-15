@@ -12,14 +12,21 @@ public class HandNodeA {
      * @param next
      */
     public HandNodeA(Hand hand, HandNodeA next) {
-        //TODO
+        this.hand = hand;
+        this.next = next;
     }
 
     /**
      * @return the number of hands in the linked list.
      */
-    public int size() {
-        return 0; //TODO
+    public int size(){
+        
+        if(next == null){
+            return 1;
+        }
+
+        return 1 + next.size();
+
     }
 
     /**
@@ -29,7 +36,15 @@ public class HandNodeA {
      * (first hand is at index 0)
      */
     public Hand get(int idx) {
-        return null; //TODO
+        if(idx >= this.size()){
+            return null;
+        }
+        
+        if(idx == 0){
+            return this.hand;
+        }
+        return next.get(idx - 1);
+
     }
 
     /**
