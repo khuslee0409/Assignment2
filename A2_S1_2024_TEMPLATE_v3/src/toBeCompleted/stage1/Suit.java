@@ -37,4 +37,9 @@ public class Suit {
     public int compareTo(Suit other) {
         return this.value - other.value;
     }
+
+    public Object getName() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getName'");
+    }
 }

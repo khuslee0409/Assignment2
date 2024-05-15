@@ -1,6 +1,7 @@
 package toBeCompleted.stage3;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import toBeCompleted.stage1.*;
 import toBeCompleted.stage2.*;
@@ -18,8 +19,20 @@ public class Hand {
      * @param deck
      */
     public Hand(String player, int n, Deck deck) {
-        //TODO
+        this.player = (player != null) ? player : "TBD"; //player not null= true but in condition that it has to be TBD
+        this.cardsInHand = new ArrayList<>(); //New arraylist data
+        
+        for (int i = 0; i < n; i++) {
+            Card card = deck.drawCard(); //card reference to function
+            if (card != null) {
+                cardsInHand.add(card);//array value added
+            } else {
+                System.out.println("No more cards!");
+                break; //when there is no card
+            }
+        }
     }
+    
 
     /**
      * Constructor 2 for Hand
@@ -27,7 +40,8 @@ public class Hand {
      * @param cards ArrayList of cards to be copied into the instance variable
      */
     public Hand(String player, ArrayList<Card> cards) {
-        //TODO
+        this.player = (player != null) ? player : "TBD";// same condition as Hand1
+        this.cardsInHand = new ArrayList<>(cards);
     }
 
     /**
@@ -35,8 +49,14 @@ public class Hand {
      * @param card
      * @return false if card is null, true otherwise
      */
-    public boolean addCard(Card card) {
-        return false; //TODO
+    public boolean addCard(Card card) { //same if as Hand1
+        if (card != null) {
+            cardsInHand.add(card);
+            return true;
+        } else {
+            System.out.println("No more cards!");
+            return false;
+        }
     }
 
     /**
@@ -48,16 +68,27 @@ public class Hand {
      * In short, do not use the contains method
      */
     public boolean hasCard(Card key) {
-        return false; //TODO
+        for (Card card : cardsInHand) {//if same
+            if (card.equals(key)) {//if card =key card
+                return true;
+            }
+        }
+        return false;
     }
+    
 
     /**
      * Remove a card from the hand
      * @return the card removed, null if the hand is empty
      */
     public Card removeRandomCard() {
-        return null; //TODO
+        if (cardsInHand.isEmpty()) {//condition of empty
+            return null;
+        }
+        int randomIndex = (int) (Math.random() * cardsInHand.size());//using math function to create index
+        return cardsInHand.remove(randomIndex);//remove the index number
     }
+    
 
     /**
      * Steal a card from another hand. Card should be removed from the other hand
@@ -65,8 +96,16 @@ public class Hand {
      * @return the card stolen, null if the other hand is empty
      */
     public Card stealCardFrom(Hand other) {
-        return null; //TODO
+        if (other == null || other.cardsInHand.isEmpty()) {//in condition of null return null
+            return null;
+        }
+        int randomIndex = (int) (Math.random() * other.cardsInHand.size());//index function same as removeRandomCard function math
+        Card stolenCard = other.cardsInHand.remove(randomIndex);//remove index card from other
+        cardsInHand.add(stolenCard);//add to first hand
+        return stolenCard;
     }
+    
+    
 
     /**
      * Remove a card from the hand with a specific suit, if any
@@ -74,8 +113,15 @@ public class Hand {
      * @return the card removed, null if the hand is empty or no card with the suit is found
      */
     public Card removeCardBySuit(String suitName) {
-        return null; //TODO
+        for (int i = 0; i < cardsInHand.size(); i++) {
+            Card card = cardsInHand.get(i);
+            if (card.suit.name.equals(suitName)) {//link to suit
+                return cardsInHand.remove(i); // Remove and return the card
+            }
+        }
+        return null; // No card with the specified suit found
     }
+    
 
     /**
      * 
@@ -85,7 +131,21 @@ public class Hand {
      * See test cases for examples.
      */
     public int sameSuitCards() {
-        return 0; //TODO
+        int maxCount = 0;
+        for (int i = 0; i < cardsInHand.size(); i++) {
+            Card card = cardsInHand.get(i);//card in hand
+            int count = 1; // Count for the current card
+            for (int j = i + 1; j < cardsInHand.size(); j++) {
+                Card card1=cardsInHand.get(j);//other card in hand
+                if (card.suit.name.equals(card1.suit.name)) {//suit check if same
+                    count++;
+                }
+            }
+            if (count > maxCount) {
+                maxCount = count;
+            }
+        }
+        return maxCount;
     }
 
     /**
@@ -95,7 +155,18 @@ public class Hand {
      * See test cases for examples.
      */
     public boolean allSameSuit() {
-        return false; //TODO
+        if (cardsInHand.size() < 3) {
+            return false;
+        }
+        Card card1 =cardsInHand.get(0);//reference first card
+        String suit = card1.suit.name; // Get the suit of the first card
+        for (int i = 1; i < cardsInHand.size(); i++) {
+            Card card = cardsInHand.get(i);//reference as card
+            if (card.suit.name!=suit) {//not same
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -150,8 +221,9 @@ public class Hand {
         return false; //TODO
     }
 
-    /**
-     * Swap a card from this hand with a random card from another hand
+     /**
+     * Swap a card from this hand with a random card from another hand, if both parties agree
+     * (determined using agreeToSwap method)
      * @param idx index of the card in this hand to be swapped
      * @param other the other hand
      * @return true if the swap is successful, false otherwise
