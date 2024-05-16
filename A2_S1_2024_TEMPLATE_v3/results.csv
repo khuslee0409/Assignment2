@@ -123,3 +123,6 @@ class tests.stage3.HandTest,testHandStealCardFrom,10.0
 class tests.stage3.HandTest,testHandRemoveCardBySuit,10.0
 class tests.stage3.HandTest,testHandSameSuitCards,10.0
 class tests.stage3.HandTest,testHandAllSameSuit,10.0
+class tests.stage3.HandTest,testHandConstructor1,10.0
+class tests.stage3.HandTest,testHandConstructor2,10.0
+class tests.stage4.HandNodeATest,testHandNodeAConstructor,10.0

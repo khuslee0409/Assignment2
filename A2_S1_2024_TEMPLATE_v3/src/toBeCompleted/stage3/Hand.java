@@ -196,19 +196,7 @@ public class Hand {
     * @return the length of the longest "sequence" of cards in the hand.
     */
     public int sequenceLength() {
-
-        if(cardsInHand.size() == 1){
-            return 1;
-        }
-
-        int result = 0;
-
-        for(int i = 0; i < cardsInHand.size()-2; i++){
-            if(cardsInHand.get(i).rank.value + 1 == cardsInHand.get(i + 1).rank.value){
-                result++;
-            }
-        }
-        return result++;
+        return 0;
     }
 
     /**
