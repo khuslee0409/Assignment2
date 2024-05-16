@@ -56,7 +56,7 @@ public class HandNodeA {
      * algorithm, tackled by winnerAdvanced.
      */
     public Hand winner() {
-        return null; //TODO
+        
     }
 
     /**
