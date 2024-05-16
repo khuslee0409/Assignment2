@@ -175,7 +175,18 @@ public class Hand {
      * should occur first after the sorting is done.
      */
     public void arrange() {
-        //TODO
+        for (int i = 0; i < cardsInHand.size(); i++) {
+            for (int j = i + 1; j < cardsInHand.size(); j++) {
+                Card card1 = cardsInHand.get(i);
+                Card card2 = cardsInHand.get(j);
+                if (card1.compareTo(card2) > 0 || 
+                (card1.compareTo(card2) == 0 && cardsInHand.indexOf(card1) > cardsInHand.indexOf(card2))) {//if cards>0 or (cards=0 and card1>card2)
+                    Card temp = card1;
+                    cardsInHand.set(i, card2);// Swap cards location
+                    cardsInHand.set(j, temp);// Swap cards
+                }
+            }
+        }
     }
 
     /**
@@ -196,7 +207,25 @@ public class Hand {
     * @return the length of the longest "sequence" of cards in the hand.
     */
     public int sequenceLength() {
-        return 0; //TODO
+        int maxLength = 0;
+        int currentLength = 1;
+        arrange();//sort
+        for (int i = 0; i < cardsInHand.size() - 1; i++) {//for sequence
+            Card currentCard = cardsInHand.get(i);
+            Card nextCard = cardsInHand.get(i + 1);
+            if (nextCard.rank.value == currentCard.rank.value + 1 ||
+                (currentCard.rank.value == 1 && nextCard.rank.value == 14)) {// Check if the next card continues the sequence
+                currentLength++;
+            } else {
+                
+                maxLength = Math.max(maxLength, currentLength);// Update maxLength if the current sequence is longer
+                
+                currentLength = 1;// Reset currentLength for the next sequence
+            }
+        }
+        // Handle the case where the last sequence is the longest
+        maxLength = Math.max(maxLength, currentLength);
+        return maxLength;
     }
 
     /**
