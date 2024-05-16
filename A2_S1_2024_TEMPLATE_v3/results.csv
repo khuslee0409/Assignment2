@@ -127,3 +127,6 @@ class tests.stage3.HandTest,testHandArrange,10.0
 =======
 >>>>>>> 31c410ea9e82f295f5410c383f4e5c0362cbc128
 >>>>>>> 73c1089b89297fa85e8a6c017dcc96a1ed80eadc
+class tests.stage3.HandTest,testHandArrange,10.0
+class tests.stage3.HandTest,testHandAllSameSuit,10.0
+class tests.stage3.HandTest,testHandArrange,10.0

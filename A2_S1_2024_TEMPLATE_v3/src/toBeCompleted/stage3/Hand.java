@@ -2,6 +2,7 @@ package toBeCompleted.stage3;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 import toBeCompleted.stage1.*;
 import toBeCompleted.stage2.*;
@@ -175,15 +176,13 @@ public class Hand {
      * should occur first after the sorting is done.
      */
     public void arrange() {
-        for (int i = 0; i < cardsInHand.size(); i++) {
-            for (int j = i + 1; j < cardsInHand.size(); j++) {
-                Card card1 = cardsInHand.get(i);
-                Card card2 = cardsInHand.get(j);
-                if (card1.compareTo(card2) > 0 || 
-                (card1.compareTo(card2) == 0 && cardsInHand.indexOf(card1) > cardsInHand.indexOf(card2))) {//if cards>0 or (cards=0 and card1>card2)
-                    Card temp = card1;
-                    cardsInHand.set(i, card2);// Swap cards location
-                    cardsInHand.set(j, temp);// Swap cards
+
+        for (int i = 0; i < cardsInHand.size() - 1; i++) {
+            for (int j = 0; j < cardsInHand.size()- 1; j++) {
+                if (cardsInHand.get(j).value() > cardsInHand.get(j + 1).value()) {
+                    Card temp = cardsInHand.get(j);
+                    cardsInHand.set(j, cardsInHand.get(j + 1));
+                    cardsInHand.set(j + 1, temp);
                 }
             }
         }
@@ -207,26 +206,42 @@ public class Hand {
     * @return the length of the longest "sequence" of cards in the hand.
     */
     public int sequenceLength() {
-        int maxLength = 0;
+        if (cardsInHand.size() == 1) {//min
+            return 1;
+        }
+        if (cardsInHand.size() == 52) {//max
+            return 13;
+        }
+        arrange();
+        int maxLength = 1;
         int currentLength = 1;
-        arrange();//sort
-        for (int i = 0; i < cardsInHand.size() - 1; i++) {//for sequence
+        for (int i = 0; i < cardsInHand.size() - 1; i++) {
             Card currentCard = cardsInHand.get(i);
-            Card nextCard = cardsInHand.get(i + 1);
-            if (nextCard.rank.value == currentCard.rank.value + 1 ||
-                (currentCard.rank.value == 1 && nextCard.rank.value == 14)) {// Check if the next card continues the sequence
-                currentLength++;
-            } else {
-                
-                maxLength = Math.max(maxLength, currentLength);// Update maxLength if the current sequence is longer
-                
-                currentLength = 1;// Reset currentLength for the next sequence
+            for (int j = i + 1; j < cardsInHand.size(); j++) {
+                Card nextCard = cardsInHand.get(j);
+                // Check if the next card continues the sequence
+                if (nextCard.rank.value == currentCard.rank.value + 1 || currentCard.rank.value == 1 && nextCard.rank.value == 14) {
+                    currentLength++;
+                    maxLength = Math.max(maxLength, currentLength);
+                } else {
+                    currentLength = 1;
+                    break; // Break the inner loop if the sequence breaks
+                }
+                currentCard = nextCard; // Update current card
             }
         }
-        // Handle the case where the last sequence is the longest
-        maxLength = Math.max(maxLength, currentLength);
         return maxLength;
-    }
+    }   
+
+    
+    
+    
+    
+
+    
+    
+    
+    
 
     /**
      * 
@@ -238,8 +253,12 @@ public class Hand {
      * 
      */
     public boolean sequence() {
-        return false; //TODO
-    }
+        if (cardsInHand.size() < 3) {
+            return false;
+        }
+        int sequenceLength = sequenceLength();
+        return sequenceLength == cardsInHand.size();
+    }//has error
     
     /**
      * 
