@@ -1,7 +1,6 @@
 package toBeCompleted.stage3;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import toBeCompleted.stage1.*;
 import toBeCompleted.stage2.*;
@@ -175,7 +174,16 @@ public class Hand {
      * should occur first after the sorting is done.
      */
     public void arrange() {
-        //TODO
+
+        for (int i = 0; i < cardsInHand.size() - 1; i++) {
+            for (int j = 0; j < cardsInHand.size()- 1; j++) {
+                if (cardsInHand.get(j).value() > cardsInHand.get(j + 1).value()) {
+                    Card temp = cardsInHand.get(j);
+                    cardsInHand.set(j, cardsInHand.get(j + 1));
+                    cardsInHand.set(j + 1, temp);
+                }
+            }
+        }
     }
 
     /**
@@ -196,8 +204,51 @@ public class Hand {
     * @return the length of the longest "sequence" of cards in the hand.
     */
     public int sequenceLength() {
-        return 0;
+        int sequenceLength = 0;
+        int maxSequenceLength = 0;
+
+        if(cardsInHand.size() == 1){
+            return 1;
+        }
+
+        for (int i = 0; i < cardsInHand.size() - 1; i++) {
+
+            int currentRank = cardsInHand.get(i).rank.value;
+    
+            sequenceLength = 1; // reset sequence length to 1 for each new sequence
+    
+            for (int j = i + 1; j < cardsInHand.size() - 1; j++) {
+    
+                int nextRank = cardsInHand.get(j).rank.value;
+    
+                if (nextRank - currentRank != 1) {
+    
+                    // if the rank difference is not 1, then this is the end of the sequence
+    
+                    break;
+    
+                }
+    
+                sequenceLength++;
+    
+                currentRank = nextRank;
+    
+            }
+    
+            // update the maximum sequence length if necessary
+    
+            sequenceLength = Math.max(sequenceLength, maxSequenceLength);
+    
+        }
+    
+    
+        return maxSequenceLength;
+    
     }
+        
+       
+
+
 
     /**
      * 

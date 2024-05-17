@@ -112,7 +112,21 @@ class tests.stage3.HandTest,testHandStealCardFrom,10.0
 class tests.stage3.HandTest,testHandRemoveCardBySuit,10.0
 class tests.stage3.HandTest,testHandSameSuitCards,10.0
 class tests.stage3.HandTest,testHandAllSameSuit,10.0
+<<<<<<< HEAD
+class tests.stage3.HandTest,testHandConstructor1,10.0
+class tests.stage3.HandTest,testHandConstructor2,10.0
+class tests.stage3.HandTest,testHandAddCard,10.0
+class tests.stage3.HandTest,testHandHasCard,10.0
+class tests.stage3.HandTest,testHandRemoveRandomCard,10.0
+class tests.stage3.HandTest,testHandStealCardFrom,10.0
+class tests.stage3.HandTest,testHandRemoveCardBySuit,10.0
+class tests.stage3.HandTest,testHandSameSuitCards,10.0
+class tests.stage3.HandTest,testHandAllSameSuit,10.0
+class tests.stage3.HandTest,testHandAllSameSuit,10.0
+class tests.stage3.HandTest,testHandArrange,10.0
+=======
 >>>>>>> 31c410ea9e82f295f5410c383f4e5c0362cbc128
+<<<<<<< HEAD
 class tests.stage4.HandNodeATest,testHandNodeAConstructor,10.0
 class tests.stage3.HandTest,testHandConstructor1,10.0
 class tests.stage3.HandTest,testHandConstructor2,10.0
@@ -126,3 +140,11 @@ class tests.stage3.HandTest,testHandAllSameSuit,10.0
 class tests.stage3.HandTest,testHandConstructor1,10.0
 class tests.stage3.HandTest,testHandConstructor2,10.0
 class tests.stage4.HandNodeATest,testHandNodeAConstructor,10.0
+=======
+>>>>>>> 73c1089b89297fa85e8a6c017dcc96a1ed80eadc
+>>>>>>> 5e539dd84e89ce6f449bbfbd86353cd77b8f893f
+class tests.stage3.HandTest,testHandArrange,10.0
+class tests.stage3.HandTest,testHandArrange,10.0
+class tests.stage3.HandTest,testHandArrange,10.0
+class tests.stage3.HandTest,testHandArrange,10.0
+class tests.stage3.HandTest,testHandArrange,10.0
