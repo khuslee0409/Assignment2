@@ -163,3 +163,7 @@ class tests.stage3.HandTest,testHandRemoveCardBySuit,10.0
 class tests.stage3.HandTest,testHandSameSuitCards,10.0
 class tests.stage3.HandTest,testHandAllSameSuit,10.0
 class tests.stage3.HandTest,testHandArrange,10.0
+class tests.stage5.HandNodeBTest,testHandNodeBConstructor,5.0
+class tests.stage5.HandNodeBTest,testHandNodeBSize,5.0
+class tests.stage5.HandNodeBTest,testHandNodeBGet,5.0
+class tests.stage3.HandTest,testHandValue,10.0

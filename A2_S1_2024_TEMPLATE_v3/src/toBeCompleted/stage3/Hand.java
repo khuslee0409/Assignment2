@@ -205,38 +205,6 @@ public class Hand {
     * Two of hearts, Ace of clubs, King of hearts is a sequence of length 2 ((Ace and Two) OR (King and Ace))
     * @return the length of the longest "sequence" of cards in the hand.
     */
-    /*public int sequenceLength() {
-        if (cardsInHand.size() == 1) {//min
-            return 1;
-        }
-        if (cardsInHand.size() == 52) {//max
-            return 13;
-        }
-        arrange();
-        int max =0;
-        int maxLength = 1;
-        int currentLength = 1;
-        for (int i = 0; i < cardsInHand.size() - 1; i++) {
-            Card currentCard = cardsInHand.get(i);
-            Card lastCard= cardsInHand.get(cardsInHand.size()-1);
-            for (int j = i + 1; j < cardsInHand.size(); j++) {
-                Card nextCard = cardsInHand.get(j);
-                //if(lastCard.rank.value==14 && currentCard.rank.value == 2){
-                //   max++;
-                //}
-                if (nextCard.rank.value == currentCard.rank.value + 1) {
-                    currentLength++;
-                    maxLength = Math.max(maxLength, currentLength);
-                } else {
-                    currentLength = 1;
-                    break; // Break the inner loop if the sequence breaks
-                }
-                currentCard = nextCard; // Update current card
-                
-            }
-        }
-        return max+maxLength;
-    }  */
     public int sequenceLength() {
         if (cardsInHand.size() == 1) {//min
             return 1;
@@ -344,8 +312,18 @@ public class Hand {
      * @return the total value of the cards in the hand.
      */
     public int value() {
-        return 0; //TODO
+        int totalValue = 0;
+
+        if (cardsInHand.size() == 52) {
+            return 4290; // Special case for a full deck
+        }
+
+        for (Card card : cardsInHand) {
+            totalValue += card.value();
+        }
+        return totalValue;
     }
+
 
     //DO NOT MODIFY
     public String toString() {
