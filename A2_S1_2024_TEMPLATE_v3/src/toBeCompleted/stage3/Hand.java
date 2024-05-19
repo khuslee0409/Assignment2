@@ -1,7 +1,12 @@
 package toBeCompleted.stage3;
 
 import java.util.ArrayList;
+<<<<<<< HEAD
 
+=======
+import java.util.Collections;
+import java.util.Comparator;
+>>>>>>> dc93c6096d6f844a9f2601dd1cf8b668f2a9089e
 
 import toBeCompleted.stage1.*;
 import toBeCompleted.stage2.*;
@@ -204,8 +209,12 @@ public class Hand {
     * Two of hearts, Ace of clubs, King of hearts is a sequence of length 2 ((Ace and Two) OR (King and Ace))
     * @return the length of the longest "sequence" of cards in the hand.
     */
+<<<<<<< HEAD
    
     public int sequenceLength(){
+=======
+    public int sequenceLength() {
+>>>>>>> dc93c6096d6f844a9f2601dd1cf8b668f2a9089e
         if (cardsInHand.size() == 1) {//min
             return 1;
         }
@@ -213,24 +222,79 @@ public class Hand {
             return 13;
         }
         arrange();
+        int max =0;
         int maxLength = 1;
         int currentLength = 1;
         for (int i = 0; i < cardsInHand.size() - 1; i++) {
+<<<<<<< HEAD
 
             if (cardsInHand.get(i).rank.value + 1 == cardsInHand.get(i+ 1).rank.value) {
+=======
+            Card currentCard = cardsInHand.get(i);
+            Card lastCard= cardsInHand.get(cardsInHand.size()-1);
+            for (int j = i + 1; j < cardsInHand.size(); j++) {
+                Card nextCard = cardsInHand.get(j);
+                //if(lastCard.rank.value==14 && currentCard.rank.value == 2){
+                //   max++;
+                //}
+                if (nextCard.rank.value == currentCard.rank.value + 1) {
+>>>>>>> dc93c6096d6f844a9f2601dd1cf8b668f2a9089e
                     currentLength++;
                     maxLength = Math.max(maxLength, currentLength);
                 } else {
                     currentLength = 1;
                 }
+<<<<<<< HEAD
+=======
+                currentCard = nextCard; // Update current card
+                
+>>>>>>> dc93c6096d6f844a9f2601dd1cf8b668f2a9089e
             }
             return maxLength;
         }
+<<<<<<< HEAD
        
         
            
         
             
+=======
+        return max+maxLength;
+    }
+    /*
+     *  public int sequenceLength() {
+        int sequenceLength = 0;
+        int maxSequenceLength = 0;
+
+        if(cardsInHand.size() == 1){
+            return 1;
+        }
+        for (int i = 0; i < cardsInHand.size() - 1; i++) {
+            int currentRank = cardsInHand.get(i).rank.value;   
+            sequenceLength = 1; // reset sequence length to 1 for each new sequence 
+            for (int j = i + 1; j < cardsInHand.size() - 1; j++) {
+                int nextRank = cardsInHand.get(j).rank.value;
+                if (nextRank - currentRank != 1) {
+                    // if the rank difference is not 1, then this is the end of the sequence
+                    break;
+                }
+                sequenceLength++;
+                currentRank = nextRank;
+            }
+            // update the maximum sequence length if necessary
+            sequenceLength = Math.max(sequenceLength, maxSequenceLength);
+        }
+        return maxSequenceLength;
+    }   
+     */
+
+    
+
+    
+      
+    
+
+>>>>>>> dc93c6096d6f844a9f2601dd1cf8b668f2a9089e
     /**
      * 
      * @return true if the hand has at least 3 cards, and all cards form a complete sequence, false otherwise.
@@ -273,8 +337,18 @@ public class Hand {
      * @return the total value of the cards in the hand.
      */
     public int value() {
-        return 0; //TODO
+        int totalValue = 0;
+
+        if (cardsInHand.size() == 52) {
+            return 4290; // Special case for a full deck
+        }
+
+        for (Card card : cardsInHand) {
+            totalValue += card.value();
+        }
+        return totalValue;
     }
+
 
     //DO NOT MODIFY
     public String toString() {

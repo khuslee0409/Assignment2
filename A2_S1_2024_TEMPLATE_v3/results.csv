@@ -153,11 +153,14 @@ class tests.stage3.HandTest,testHandArrange,10.0
 class tests.stage3.HandTest,testHandAllSameSuit,10.0
 >>>>>>> ac2d48e9ab5c0abe43e318f3d6eee37e65b42956
 class tests.stage3.HandTest,testHandArrange,10.0
+<<<<<<< HEAD
 class tests.stage3.HandTest,testHandSequenceLength,10.0
 class tests.stage3.HandTest,testHandSequenceLength,10.0
 class tests.stage3.HandTest,testHandSequenceLength,10.0
 class tests.stage3.HandTest,testHandSequenceLength,10.0
 class tests.stage3.HandTest,testHandSequenceLength,10.0
+=======
+>>>>>>> dc93c6096d6f844a9f2601dd1cf8b668f2a9089e
 class tests.stage3.HandTest,testHandConstructor1,10.0
 class tests.stage3.HandTest,testHandConstructor2,10.0
 class tests.stage3.HandTest,testHandAddCard,10.0
@@ -168,6 +171,13 @@ class tests.stage3.HandTest,testHandRemoveCardBySuit,10.0
 class tests.stage3.HandTest,testHandSameSuitCards,10.0
 class tests.stage3.HandTest,testHandAllSameSuit,10.0
 class tests.stage3.HandTest,testHandArrange,10.0
+<<<<<<< HEAD
 class tests.stage4.HandNodeATest,testHandNodeAConstructor,10.0
 class tests.stage4.HandNodeATest,testHandNodeASize,10.0
 class tests.stage4.HandNodeATest,testHandNodeAGet,10.0
+=======
+class tests.stage5.HandNodeBTest,testHandNodeBConstructor,5.0
+class tests.stage5.HandNodeBTest,testHandNodeBSize,5.0
+class tests.stage5.HandNodeBTest,testHandNodeBGet,5.0
+class tests.stage3.HandTest,testHandValue,10.0
+>>>>>>> dc93c6096d6f844a9f2601dd1cf8b668f2a9089e

@@ -18,7 +18,9 @@ public class HandNodeB {
      * @param next
      */
     public HandNodeB(Hand hand, HandNodeB previous, HandNodeB next) {
-        //TODO
+        this.hand = hand;
+        this.previous = previous;
+        this.next = next;
     }
 
     /**
@@ -27,8 +29,20 @@ public class HandNodeB {
      * IMPORTANT: the calling object might NOT be the last (or the first) item in the list.
      */
     public int size() {
-        return 0; //TODO
+        int count = 1; // Start current node
+        HandNodeB current = this;
+        while (current.previous != null) {//start of the list
+            count++;
+            current = current.previous;
+        }
+        current = this;
+        while (current.next != null) {//end of the list
+            count++;
+            current = current.next;
+        }
+        return count;
     }
+    
 
     /**
      * 
@@ -39,7 +53,20 @@ public class HandNodeB {
      * IMPORTANT: the calling object might NOT be the first (or the last) item in the list.
      */
     public HandNodeB get(int idx) {
-        return null; //TODO
+        HandNodeB first = this;//first node
+        while (first.previous != null) {
+            first = first.previous;
+        }
+        HandNodeB current = first;//first node to given index node
+        int currentIndex = 0;
+        while (current != null) {
+            if (currentIndex == idx) {
+                return current;
+            }
+            current = current.next;
+            currentIndex++;
+        }
+        return null;// Return null if the index is out of bounds
     }
     
     /**
@@ -52,7 +79,7 @@ public class HandNodeB {
      * 
      * return null if none of the cards have a "sequence" or all cards are of the same suit
      */
-    public Hand winner() {
+    public Hand winner() {//need sequence
         return null; //TODO
     }
 
@@ -63,7 +90,7 @@ public class HandNodeB {
      * IMPORTANT: the calling object might NOT be the first (or the last) item in the list.
      */
     public String toStringCompact() {
-        return ""; //TODO
+       return "";
     }
 
     /**
@@ -112,7 +139,7 @@ public class HandNodeB {
      * 
      * IMPORTANT: The winner might be BEFORE the calling object too!!!
      */
-    public Hand winnerAdvanced() {
+    public Hand winnerAdvanced() {//need sequence
         return null; //TODO
     }
 }
