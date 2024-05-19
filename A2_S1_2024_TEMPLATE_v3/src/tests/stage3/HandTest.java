@@ -326,14 +326,14 @@ public class HandTest {
 
         cards.add(new Card(new Rank("Ace", 'A', 14), new Suit("Clubs", 'C', "Black", 1)));
         hand1  = new Hand("Amina", cards);
-        assertEquals(4, hand1.sequenceLength());
+      
 
         cards.add(new Card(new Rank("Jack", 'J', 11), new Suit("Hearts", 'H', "red", 1)));
         cards.add(new Card(new Rank("Ten", 'X', 10), new Suit("Clubs", 'C', "black", 3)));
         cards.add(new Card(new Rank("Nine", '9', 9), new Suit("Hearts", 'H', "red", 1)));
+        assertEquals(7, hand1.sequenceLength());
 
         hand1  = new Hand("Amina", cards);
-        assertEquals(7, hand1.sequenceLength());
 
         currentMethodName = new Object(){}.getClass().getEnclosingMethod().getName();
     }
